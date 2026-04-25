@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.39.0",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11", #added after checking test logs in jenkins
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11", //added after checking test logs in jenkins
     "@types/node": "^20.8.6"
   },
   "jest-junit": {

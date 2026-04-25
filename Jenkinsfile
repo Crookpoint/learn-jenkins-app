@@ -35,6 +35,7 @@ pipeline {
             }
             steps {
                 sh '''
+                    echo 'Test Stage started'
                     #test -f build/index.html
                     #ls -la build/index.html
                     npm test -- --watchAll=false

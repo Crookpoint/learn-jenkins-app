@@ -42,9 +42,9 @@ pipeline {
         }
     }
 
-    // post {
-    //     always {
-    //         junit 
-    //     }
-    // }
+    post {
+        always {
+            junit 'test-results/junit.xml'
+        }
+    }
 }

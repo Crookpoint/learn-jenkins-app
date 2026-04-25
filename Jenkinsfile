@@ -36,9 +36,15 @@ pipeline {
                     echo 'Test Stage'
                     test -f build/index.html
                     ls -la build/index.html
-                    npm test
+                    npm test -- --watchAll=false
                 '''
             }
         }
     }
+
+    // post {
+    //     always {
+    //         junit 
+    //     }
+    // }
 }

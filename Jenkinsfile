@@ -55,7 +55,7 @@ pipeline {
                     echo 'Starting E2E tests'
                     npm install serve
                     node_modules/.bin/serve -s build &
-                    sleep 100
+                    sleep 10
                     npx playwrite test
                 '''
             }

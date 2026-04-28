@@ -26,7 +26,7 @@ pipeline {
         }
         */
 
-        stage('Test') {
+        stage('UnitTest') {
             agent {
                 docker {
                     image 'node:18-alpine'
@@ -56,7 +56,7 @@ pipeline {
                     npm install serve
                     node_modules/.bin/serve -s build &
                     sleep 10
-                    npx playwright test
+                    npx playwright test --reporter=html
                 '''
             }
         }

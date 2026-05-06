@@ -65,7 +65,7 @@ pipeline {
                 sh '''
                     echo 'Deploy Stage started'
                     npm install netlify-cli@20.1.1
-                    netlify --version
+                    node_modules/.bin/netlify --version
                 '''
             }
         }

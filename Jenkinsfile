@@ -68,6 +68,7 @@ pipeline {
             }
             steps {
                 sh '''
+                    echo 'small change testing SCM Polling'
                     echo 'Deploy Stage started'
                     npm install netlify-cli@20.1.1
                     node_modules/.bin/netlify --version

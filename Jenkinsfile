@@ -80,9 +80,7 @@ pipeline {
 
         stage('Approval') {
             steps {
-                sh '''
-                    echo 'approval stage to confirm before deploying to prod'
-                '''
+                input message: 'Do you wish to deploy to production?', ok: 'Yes, I am sure!'
             }
         }
 
@@ -95,7 +93,6 @@ pipeline {
             }
             steps {
                 sh '''
-                    echo 'small change testing SCM Polling'
                     echo 'Deploy to Prod environment started'
                     npm install netlify-cli@20.1.1
                     node_modules/.bin/netlify --version

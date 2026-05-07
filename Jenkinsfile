@@ -86,6 +86,11 @@ pipeline {
                     reuseNode true
                 }
             }
+
+            environment {
+                CI_ENVIRONMENT_URL = 'https://magnificent-klepon-2226b6.netlify.app'
+            }
+
             steps {
                 sh '''
                     echo 'Starting Prod E2E tests'

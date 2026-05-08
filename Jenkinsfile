@@ -67,9 +67,9 @@ pipeline {
                 }
             }
 
-            // environment {
-            //     CI_ENVIRONMENT_URL = "${env.STAGING_URL}"
-            // }
+            environment {
+                CI_ENVIRONMENT_URL = "Test Value for Staging URL to fix issue with localhost connection refused by Playwright tests"
+            }
 
             steps {
                 sh '''

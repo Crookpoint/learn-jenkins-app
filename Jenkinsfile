@@ -8,15 +8,6 @@ pipeline {
     }
 
     stages {
-        
-        stage('Docker Build') {
-            steps {
-                sh '''
-                    echo 'Building Docker image using playwright base image'
-                    docker build -t my-custom-playwright .
-                '''
-            }
-        }
 
         stage('Build') {
             agent {

@@ -118,6 +118,27 @@ pipeline {
         //     }
         // }
 
+        stage('Deploy to AWS S3') {
+            agent {
+                docker {
+                    image 'amazon/aws-cli'
+                    reuseNode true
+                    args "--entrypoint=''"
+                }
+            }
+            environment {
+                AWS_S3_BUCKET = "jenkins-practice-bucket-20260509"
+            }
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'my-aws', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
+                    sh '''
+                        aws --version
+                        aws s3 sync build s3://$AWS_S3_BUCKET
+                    '''
+                }
+            }
+        }
+        
         stage('Deploy Prod') {
             agent {
                 docker {
@@ -143,27 +164,6 @@ pipeline {
             post {
                 always {
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Prod E2E report', reportTitles: '', useWrapperFileDirectly: true])
-                }
-            }
-        }
-
-        stage('Deploy to AWS S3') {
-            agent {
-                docker {
-                    image 'amazon/aws-cli'
-                    reuseNode true
-                    args "--entrypoint=''"
-                }
-            }
-            environment {
-                AWS_S3_BUCKET = "jenkins-practice-bucket-20260509"
-            }
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'my-aws', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
-                    sh '''
-                        aws --version
-                        aws s3 sync build s3://$AWS_S3_BUCKET
-                    '''
                 }
             }
         }
